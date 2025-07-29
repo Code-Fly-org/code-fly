@@ -1,5 +1,6 @@
 @import 'tailwindcss';
 
 body {
+  font-family: 'Ubuntu', sans-serif;
   @apply bg-[rgb(16,16,16)] text-white;
 }

@@ -1,4 +1,5 @@
 import ReactDOM from 'react-dom/client'
+import '@fontsource/ubuntu'
 import './Globals.css'
 
 function App () {
