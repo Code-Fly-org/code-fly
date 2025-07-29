@@ -16,7 +16,7 @@ pub fn run() {
             url.set_path("/projectmanager.html");
             window.navigate(url).unwrap();
             window.set_resizable(false).unwrap();
-            window.set_size(PhysicalSize::new(800, 600)).unwrap();
+            window.set_size(PhysicalSize::new(800, 500)).unwrap();
             window.set_title("Project Manager").unwrap();
             Ok(())
         })
