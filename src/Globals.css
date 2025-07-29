@@ -4,3 +4,7 @@ body {
   font-family: 'Ubuntu', sans-serif;
   @apply bg-[rgb(16,16,24)] text-white select-none;
 }
+
+::-webkit-scrollbar {
+  @apply hidden;
+}
