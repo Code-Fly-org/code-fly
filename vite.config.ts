@@ -33,7 +33,8 @@ export default defineConfig(async () => ({
     rollupOptions: {
       input: {
         editor: './editor.html',
-        projectmanager: './projectmanager.html'
+        projectmanager: './projectmanager.html',
+        newproject: './newproject.html'
       }
     }
   }

@@ -17,6 +17,7 @@ pub fn run() {
                 tauri::WebviewUrl::App("projectmanager.html".into()),
             )
             .resizable(false)
+            .maximizable(false)
             .title("Code Fly")
             .inner_size(800.0, 500.0)
             .build()?;

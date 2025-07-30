@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 
 export default function Sidebar () {
   const [version, setVersion] = useState<string | null>(null)
+  const [rotation, setRotation] = useState<number>(0)
 
   useEffect(() => {
     ;(async () => {
@@ -20,8 +21,17 @@ export default function Sidebar () {
           src={Icon}
           width={64}
           height={64}
-          className='m-2'
+          className='m-2 transition-transform duration-[1.5s]'
           draggable={false}
+          style={{
+            rotate: `${rotation}deg`
+          }}
+          onClick={() => {
+            setRotation(rotation + 1800)
+          }}
+          onContextMenu={() => {
+            setRotation(rotation - 1800)
+          }}
         ></img>
         <button onClick={() => (window.location.hash = 'projects')}>
           Projects
