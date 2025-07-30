@@ -14,7 +14,7 @@ export default function Projects () {
             const mainWindow = await WebviewWindow.getByLabel('main')
             if (!mainWindow) return
             const popup = new WebviewWindow('new_project_popup', {
-              title: 'Code Fly: New Project',
+              title: 'PHP Fly: New Project',
               url: '/newproject.html',
               width: 700,
               height: 600,

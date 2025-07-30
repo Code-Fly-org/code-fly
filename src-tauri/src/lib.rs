@@ -18,7 +18,7 @@ pub fn run() {
             )
             .resizable(false)
             .maximizable(false)
-            .title("Code Fly")
+            .title("PHP Fly")
             .inner_size(800.0, 500.0)
             .build()?;
             Ok(())
