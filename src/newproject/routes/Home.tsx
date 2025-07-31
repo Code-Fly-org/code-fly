@@ -1,18 +1,17 @@
+import { useState } from 'react'
 import OptionButtons from '../components/OptionButtons'
 
-let project_type = "site"
-
-// This is here so that a warning doesn't show cuz that annoys me
-console.log(project_type)
-
 export default function Home () {
+  const [projectType, setProjectType] = useState<string>('website')
+
   return (
     <>
       <div className='container'>
+        <p>Project Type: {projectType}</p>
         <OptionButtons
           buttons={[
-            { label: "Website", onClick: () => project_type = "site" },
-            { label: "Web Server", onClick: () => project_type = "server" },
+            { label: 'Website', onClick: () => setProjectType('website') },
+            { label: 'Web Server', onClick: () => setProjectType('webserver') }
           ]}
         />
       </div>
