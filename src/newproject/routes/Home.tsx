@@ -6,15 +6,13 @@ export default function Home () {
 
   return (
     <>
-      <div className='container'>
-        <p>Project Type: {projectType}</p>
         <OptionButtons
           buttons={[
             { label: 'Website', onClick: () => setProjectType('website') },
             { label: 'Web Server', onClick: () => setProjectType('webserver') }
           ]}
+          name="Project Type"
         />
-      </div>
     </>
   )
 }

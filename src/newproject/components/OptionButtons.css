@@ -4,6 +4,10 @@ button {
   @apply bg-[rgb(54,54,72)] hover:bg-[rgb(72,72,96)] border border-[rgb(72,72,96)] hover:border-[rgb(96,96,128)] m-1 p-2 rounded-lg transition-colors cursor-pointer;
 }
 
+h2 {
+  @apply mx-auto;
+}
+
 .container {
-  @apply bg-[rgb(24,24,36)] mt-10 p-5 border border-[rgb(48,48,72)] rounded-lg justify-center mx-auto w-fit flex gap-2;
+  @apply bg-[rgb(24,24,36)] mt-10 p-5 border border-[rgb(48,48,72)] rounded-lg justify-center mx-auto w-fit flex flex-col gap-2;
 }
