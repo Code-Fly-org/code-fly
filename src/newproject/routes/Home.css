@@ -1,0 +1,5 @@
+@import 'tailwindcss';
+
+input {
+    @apply w-full max-w-md p-2 border border-[rgb(48,48,72)] bg-[rgb(24,24,36)] rounded-lg mt-5;
+}

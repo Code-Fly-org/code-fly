@@ -9,5 +9,5 @@ h2 {
 }
 
 .container {
-  @apply bg-[rgb(24,24,36)] mt-10 p-5 border border-[rgb(48,48,72)] rounded-lg justify-center mx-auto w-fit flex flex-col gap-2;
+  @apply bg-[rgb(24,24,36)] mt-5 p-5 border border-[rgb(48,48,72)] rounded-lg justify-center mx-auto w-fit flex flex-col gap-2;
 }
