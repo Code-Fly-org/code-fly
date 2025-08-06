@@ -31,6 +31,10 @@ export default function Home () {
             ]}
             name="Project Type"
           />
+
+          <div className='absolute left-1/2 transform -translate-x-1/2 bottom-0 mb-5'>
+            <button className='new-project-btn'>Create</button>
+          </div>
         </div>
     </>
   )
