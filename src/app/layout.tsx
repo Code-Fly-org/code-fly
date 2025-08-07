@@ -9,7 +9,7 @@ const ubuntu = Ubuntu({
   subsets: ['latin']
 })
 
-const Layout = ({ children }: { children: React.ReactNode }) => {
+export default function Layout ({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     const handler = (e: MouseEvent) => e.preventDefault()
     document.addEventListener('contextmenu', handler)
@@ -24,5 +24,3 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
     </>
   )
 }
-
-export default Layout

@@ -6,7 +6,11 @@ import { app } from '@tauri-apps/api'
 import Image from 'next/image'
 import Link from 'next/link'
 
-export default function Layout ({ children }: { children: React.ReactNode }) {
+export default function ProjectManageR_Layout ({
+  children
+}: {
+  children: React.ReactNode
+}) {
   const [version, setVersion] = useState<string | null>(null)
   const [rotation, setRotation] = useState<number>(0)
 

@@ -3,7 +3,7 @@
 import { WebviewWindow } from '@tauri-apps/api/webviewWindow'
 import './ProjecftManager_projects.css'
 
-export default function Projects () {
+export default function ProjectManager_Projects () {
   return (
     <>
       <div className='topbar'>
