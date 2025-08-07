@@ -9,11 +9,19 @@ async fn create_project(project_type: String, project_folder: String, project_na
     let project_type_str: &str = project_type.as_str();
     match project_type_str {
         "website" => {
-            let _ = fs::write(format!("{}/index.php", project_root), "<h1>this will be updated later</h1>").await;
+            let _ = fs::write(
+                format!("{}/index.php", project_root),
+                "<h1>this will be updated later</h1>",
+            )
+            .await;
         }
 
         "webserver" => {
-            let _ = fs::write(format!("{}/index.php", project_root), "<h1>this will be updated later</h1>").await;
+            let _ = fs::write(
+                format!("{}/index.php", project_root),
+                "<h1>this will be updated later</h1>",
+            )
+            .await;
         }
 
         _ => {}
@@ -35,7 +43,7 @@ pub fn run() {
             tauri::webview::WebviewWindowBuilder::new(
                 app,
                 "main",
-                tauri::WebviewUrl::App("projectmanager.html".into()),
+                tauri::WebviewUrl::App("projectmanager/projects".into()),
             )
             .resizable(false)
             .maximizable(false)

@@ -1,5 +1,7 @@
+'use client'
+
 import { WebviewWindow } from '@tauri-apps/api/webviewWindow'
-import './Projects.css'
+import './ProjecftManager_projects.css'
 
 export default function Projects () {
   return (
@@ -15,7 +17,7 @@ export default function Projects () {
             if (!mainWindow) return
             const popup = new WebviewWindow('new_project_popup', {
               title: 'PHP Fly: New Project',
-              url: '/newproject.html',
+              url: '/newproject',
               width: 600,
               height: 500,
               resizable: false,

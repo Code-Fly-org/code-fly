@@ -5,9 +5,9 @@
   "identifier": "xyz.lncvrt.php-fly",
   "build": {
     "beforeDevCommand": "yarn dev",
-    "devUrl": "http://localhost:1420",
     "beforeBuildCommand": "yarn build",
-    "frontendDist": "../dist"
+    "devUrl": "http://localhost:3000",
+    "frontendDist": "../out"
   },
   "bundle": {
     "active": true,

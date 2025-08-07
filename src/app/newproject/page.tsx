@@ -1,10 +1,12 @@
+'use client'
+
 import { useEffect, useState } from 'react'
-import OptionButtons from '../components/OptionButtons'
-import './Home.css'
+import OptionButtons from '@/components/OptionButtons'
+import './NewProject_page.css'
 import { documentDir } from '@tauri-apps/api/path'
 import { open } from '@tauri-apps/plugin-dialog'
 
-export default function Home () {
+export default function NewProject_page () {
   const [projectType, setProjectType] = useState<string>('empty')
   const [projectFolder, setProjectFolder] = useState<string>('')
   const [projectName, setProjectName] = useState<string>('')
@@ -49,6 +51,7 @@ export default function Home () {
         <OptionButtons
           buttons={[
             <button
+              key='emptybutton'
               onClick={() => setProjectType('empty')}
               className='projecttypebutton'
               disabled={projectType == 'empty'}
@@ -56,6 +59,7 @@ export default function Home () {
               Empty
             </button>,
             <button
+              key='websitebutton'
               onClick={() => setProjectType('website')}
               className='projecttypebutton'
               disabled={projectType == 'website'}
@@ -63,6 +67,7 @@ export default function Home () {
               Website
             </button>,
             <button
+              key='webserverbutton'
               onClick={() => setProjectType('webserver')}
               className='projecttypebutton'
               disabled={projectType == 'webserver'}
