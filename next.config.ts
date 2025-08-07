@@ -7,7 +7,8 @@ const nextConfig: NextConfig = {
   images: {
     unoptimized: true
   },
-  assetPrefix: isProd ? undefined : `http://${internalHost}:3000`
+  assetPrefix: isProd ? undefined : `http://${internalHost}:3000`,
+  devIndicators: false
 }
 
 export default nextConfig
