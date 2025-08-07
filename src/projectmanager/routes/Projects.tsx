@@ -16,8 +16,8 @@ export default function Projects () {
             const popup = new WebviewWindow('new_project_popup', {
               title: 'PHP Fly: New Project',
               url: '/newproject.html',
-              width: 700,
-              height: 600,
+              width: 600,
+              height: 500,
               resizable: false,
               maximizable: false,
               parent: mainWindow
