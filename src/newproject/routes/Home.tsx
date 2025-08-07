@@ -5,7 +5,7 @@ import { documentDir } from '@tauri-apps/api/path'
 import { open } from '@tauri-apps/plugin-dialog'
 
 export default function Home () {
-  const [projectType, setProjectType] = useState<string>('website')
+  const [projectType, setProjectType] = useState<string>('empty')
   const [projectFolder, setProjectFolder] = useState<string>('')
   const [projectName, setProjectName] = useState<string>('')
 
@@ -48,8 +48,27 @@ export default function Home () {
         </div>
         <OptionButtons
           buttons={[
-            { label: 'Website', onClick: () => setProjectType('website') },
-            { label: 'Web Server', onClick: () => setProjectType('webserver') }
+            <button
+              onClick={() => setProjectType('empty')}
+              className='projecttypebutton'
+              disabled={projectType == 'empty'}
+            >
+              Empty
+            </button>,
+            <button
+              onClick={() => setProjectType('website')}
+              className='projecttypebutton'
+              disabled={projectType == 'website'}
+            >
+              Website
+            </button>,
+            <button
+              onClick={() => setProjectType('webserver')}
+              className='projecttypebutton'
+              disabled={projectType == 'webserver'}
+            >
+              Web Server
+            </button>
           ]}
           name='Project Type'
         />

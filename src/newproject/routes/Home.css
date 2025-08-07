@@ -9,3 +9,7 @@
 input {
   @apply w-full max-w-md p-2 border border-[rgb(48,48,72)] bg-[rgb(24,24,36)] rounded-lg mt-5;
 }
+
+.projecttypebutton:disabled {
+  @apply bg-[rgb(72,72,96)] border-[rgb(96,96,128)];
+}
