@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { useEffect } from 'react'
 import './Globals.css'
 import { Ubuntu } from 'next/font/google'
 
@@ -10,6 +10,12 @@ const ubuntu = Ubuntu({
 })
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
+  useEffect(() => {
+    const handler = (e: MouseEvent) => e.preventDefault()
+    document.addEventListener('contextmenu', handler)
+    return () => document.removeEventListener('contextmenu', handler)
+  }, [])
+
   return (
     <>
       <html lang='en' className={ubuntu.className}>
