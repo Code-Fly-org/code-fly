@@ -1,4 +1,24 @@
 use tauri::Manager;
+use tokio::fs;
+
+#[tauri::command]
+async fn create_project(project_type: String, project_folder: String, project_name: String) {
+    let project_root: String = format!("{}/{}", project_folder, project_name);
+    let _ = fs::create_dir(&project_root);
+
+    let project_type_str: &str = project_type.as_str();
+    match project_type_str {
+        "website" => {
+            let _ = fs::write(format!("{}/index.php", project_root), "<h1>this will be updated later</h1>").await;
+        }
+
+        "webserver" => {
+            let _ = fs::write(format!("{}/index.php", project_root), "<h1>this will be updated later</h1>").await;
+        }
+
+        _ => {}
+    }
+}
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
@@ -10,7 +30,7 @@ pub fn run() {
                 .expect("no main window")
                 .set_focus();
         }))
-        .invoke_handler(tauri::generate_handler![])
+        .invoke_handler(tauri::generate_handler![create_project])
         .setup(|app| {
             tauri::webview::WebviewWindowBuilder::new(
                 app,
