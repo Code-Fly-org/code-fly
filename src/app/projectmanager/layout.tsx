@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import './ProjectManager_layout.css'
 import { app } from '@tauri-apps/api'
 import Image from 'next/image'
+import Link from 'next/link'
 
 export default function Layout ({ children }: { children: React.ReactNode }) {
   const [version, setVersion] = useState<string | null>(null)
@@ -37,20 +38,8 @@ export default function Layout ({ children }: { children: React.ReactNode }) {
               setRotation(rotation - 1800)
             }}
           ></Image>
-          <button
-            onClick={() =>
-              (window.location.pathname = '/projectmanager/projects')
-            }
-          >
-            Projects
-          </button>
-          <button
-            onClick={() =>
-              (window.location.pathname = '/projectmanager/settings')
-            }
-          >
-            Settings
-          </button>
+          <Link href='/projectmanager/projects'>Projects</Link>
+          <Link href='/projectmanager/settings'>Settings</Link>
           {version != null && (
             <p className='mt-auto mr-auto ml-2 mb-2 text-gray-400'>
               PHP Fly v{version}
