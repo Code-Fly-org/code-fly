@@ -4,11 +4,13 @@ use tokio::fs;
 #[tauri::command]
 async fn create_project(project_type: String, project_folder: String, project_name: String) {
     let project_root: String = format!("{}/{}", project_folder, project_name);
-    let _ = fs::create_dir(&project_root);
+    let _ = fs::create_dir(&project_root).await;
 
     let project_type_str: &str = project_type.as_str();
     match project_type_str {
         "website" => {
+            let _ = fs::File::create(format!("{}/index.php", project_root)).await;
+
             let _ = fs::write(
                 format!("{}/index.php", project_root),
                 "<h1>this will be updated later</h1>",

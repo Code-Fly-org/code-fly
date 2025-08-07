@@ -5,6 +5,7 @@ import OptionButtons from '@/components/OptionButtons'
 import './NewProject_page.css'
 import { documentDir } from '@tauri-apps/api/path'
 import { open } from '@tauri-apps/plugin-dialog'
+import { invoke } from '@tauri-apps/api/core'
 
 export default function NewProject_page () {
   const [projectType, setProjectType] = useState<string>('empty')
@@ -78,7 +79,7 @@ export default function NewProject_page () {
           name='Project Type'
         />
         <div className='absolute left-1/2 transform -translate-x-1/2 bottom-0 mb-5'>
-          <button className='new-project-btn'>Create</button>
+          <button className='new-project-btn' onClick={async () => await invoke("create_project", { projectType, projectFolder, projectName })}>Create</button>
         </div>
       </div>
     </>
