@@ -29,12 +29,14 @@ export default function NewProject_page () {
             value={projectName}
             onChange={e => setProjectName(e.target.value)}
           />
+
           <p className='-mb-4 mt-2'>Project Folder: </p>
           <input
             type='text'
             value={projectFolder}
             onChange={e => setProjectFolder(e.target.value)}
           />
+
           <button
             onClick={async () => {
               const folder = await open({
@@ -49,6 +51,7 @@ export default function NewProject_page () {
             Select folder
           </button>
         </div>
+
         <OptionButtons
           buttons={[
             <button
@@ -78,6 +81,7 @@ export default function NewProject_page () {
           ]}
           name='Project Type'
         />
+
         <div className='absolute left-1/2 transform -translate-x-1/2 bottom-0 mb-5'>
           <button className='new-project-btn' onClick={async () => await invoke("create_project", { projectType, projectFolder, projectName })}>Create</button>
         </div>
