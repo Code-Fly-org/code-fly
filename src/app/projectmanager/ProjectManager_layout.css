@@ -5,5 +5,5 @@
 }
 
 .sidebar a {
-  @apply w-45 bg-[rgb(54,54,72)] hover:bg-[rgb(72,72,96)] rounded-lg border border-[rgb(72,72,96)] hover:border-[rgb(96,96,128)] m-1 p-2 transition-colors cursor-pointer;
+  @apply w-45 bg-[rgb(54,54,72)] hover:bg-[rgb(72,72,96)] rounded-lg border border-[rgb(72,72,96)] hover:border-[rgb(96,96,128)] m-1 p-2 transition-colors cursor-pointer text-center;
 }
