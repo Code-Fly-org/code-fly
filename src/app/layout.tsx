@@ -2,10 +2,9 @@
 
 import React, { useEffect } from 'react'
 import './Globals.css'
-import { Ubuntu } from 'next/font/google'
+import { Lexend } from 'next/font/google'
 
-const ubuntu = Ubuntu({
-  weight: ['400'],
+const lexend = Lexend({
   subsets: ['latin']
 })
 
@@ -18,7 +17,7 @@ export default function Layout ({ children }: { children: React.ReactNode }) {
 
   return (
     <>
-      <html lang='en' className={ubuntu.className}>
+      <html lang='en' className={lexend.className}>
         <body>{children}</body>
       </html>
     </>
