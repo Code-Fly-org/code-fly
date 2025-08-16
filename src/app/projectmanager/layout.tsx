@@ -1,6 +1,6 @@
 import Sidebar from './components/Sidebar'
 
-export default function ProjectManageR_Layout ({
+export default function ProjectManager_Layout ({
   children
 }: {
   children: React.ReactNode
