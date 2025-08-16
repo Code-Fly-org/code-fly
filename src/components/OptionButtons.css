@@ -1,4 +1,4 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
 button {
   @apply bg-[rgb(54,54,72)] hover:bg-[rgb(72,72,96)];

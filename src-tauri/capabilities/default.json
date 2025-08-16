@@ -4,7 +4,8 @@
   "description": "Capability for the main window",
   "windows": [
     "projectmanager",
-    "newprojectpopup"
+    "newprojectpopup",
+    "editor"
   ],
   "permissions": [
     "core:default",
@@ -12,6 +13,7 @@
     "core:window:allow-set-enabled",
     "core:window:allow-set-focus",
     "core:window:allow-set-closable",
+    "core:window:allow-close",
     "dialog:default"
   ]
 }

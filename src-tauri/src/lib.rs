@@ -1,9 +1,49 @@
 use serde_json::Value;
 use std::{io::Cursor, path::Path};
-use tauri::{AppHandle, Emitter};
+use tauri::{AppHandle, Emitter, WebviewWindowBuilder};
 use tauri_plugin_dialog::{DialogExt, MessageDialogKind};
 use tokio::fs;
 use zip::ZipArchive;
+
+#[tauri::command]
+fn create_window(app: AppHandle, window_type: i32) {
+    match window_type {
+        0 => {
+            let _ = WebviewWindowBuilder::new(
+                &app,
+                "projectmanager",
+                tauri::WebviewUrl::App("projectmanager/projects".into()),
+            )
+            .resizable(false)
+            .maximizable(false)
+            .title("PHP Fly: Project Manager")
+            .inner_size(800.0, 500.0)
+            .build();
+        }
+        1 => {
+            let _ = WebviewWindowBuilder::new(
+                &app,
+                "newprojectpopup",
+                tauri::WebviewUrl::App("newproject".into()),
+            )
+            .resizable(false)
+            .maximizable(false)
+            .title("PHP Fly: New Project")
+            .inner_size(400.0, 500.0)
+            .build();
+        }
+        2 => {
+            let _ =
+                WebviewWindowBuilder::new(&app, "editor", tauri::WebviewUrl::App("editor".into()))
+                    .maximized(true)
+                    .title("PHP Fly: Editor")
+                    .inner_size(800.0, 600.0)
+                    .min_inner_size(600.0, 400.0)
+                    .build();
+        }
+        _ => {}
+    }
+}
 
 #[tauri::command]
 async fn create_project(
@@ -111,18 +151,10 @@ pub fn run() {
                 .title("Warning")
                 .blocking_show();
         }))
-        .invoke_handler(tauri::generate_handler![create_project])
+        .invoke_handler(tauri::generate_handler![create_project, create_window])
         .setup(|app| {
-            tauri::webview::WebviewWindowBuilder::new(
-                app,
-                "projectmanager",
-                tauri::WebviewUrl::App("projectmanager/projects".into()),
-            )
-            .resizable(false)
-            .maximizable(false)
-            .title("PHP Fly: Project Manager")
-            .inner_size(800.0, 500.0)
-            .build()?;
+            let handle = app.handle();
+            create_window(handle.clone(), 0);
             Ok(())
         })
         .run(tauri::generate_context!())
