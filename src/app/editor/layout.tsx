@@ -1,6 +1,6 @@
 'use client'
 
-import "./Editor_Globals.css";
+import './Editor_globals.css'
 
 export default function Editor_Layout ({
   children
@@ -9,7 +9,7 @@ export default function Editor_Layout ({
 }) {
   return (
     <>
-      <div className="sidebar"></div>
+      <div className='sidebar'></div>
 
       <main>{children}</main>
     </>
