@@ -1,4 +1,4 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
 .new-project-btn {
   @apply w-50 h-15 bg-[rgb(54,54,72)] hover:bg-[rgb(72,72,96)];

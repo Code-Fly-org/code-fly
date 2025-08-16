@@ -6,20 +6,48 @@ import './NewProject_page.css'
 import { documentDir } from '@tauri-apps/api/path'
 import { open } from '@tauri-apps/plugin-dialog'
 import { invoke } from '@tauri-apps/api/core'
+import { listen } from '@tauri-apps/api/event'
+import { getCurrentWindow } from '@tauri-apps/api/window'
 
 export default function NewProject_page () {
   const [projectType, setProjectType] = useState<string>('empty')
   const [projectFolder, setProjectFolder] = useState<string>('')
   const [projectName, setProjectName] = useState<string>('')
+  const [loading, setLoading] = useState<boolean>(true)
+  const [creationButtonEnabled, setCreationButtonEnabled] =
+    useState<boolean>(true)
+  const [creationMessage, setCreationMessage] = useState<string>('')
 
   useEffect(() => {
     ;(async () => {
       const projPath = await documentDir()
       setProjectFolder(projPath)
+      setLoading(false)
     })()
-  }, [])
 
-  return (
+    const updateMessage = listen<string>('new_project_update_message', event =>
+      setCreationMessage(event.payload)
+    )
+
+    const enableCreationButton = listen<string>(
+      'new_project_enable_creation_button',
+      async event => {
+        getCurrentWindow().setClosable(event.payload == 'true')
+        setCreationButtonEnabled(event.payload == 'true')
+      }
+    )
+
+    return () => {
+      updateMessage.then(f => f())
+      enableCreationButton.then(f => f())
+    }
+  }, [setCreationMessage, setCreationButtonEnabled])
+
+  return loading ? (
+    <div className='flex justify-center items-center text-6xl h-screen w-screen'>
+      <p>Loading</p>
+    </div>
+  ) : (
     <>
       <div className='justify-center mx-auto w-fit'>
         <div className='text-center mt-2'>
@@ -72,9 +100,9 @@ export default function NewProject_page () {
             </button>,
             <button
               key='webserverbutton'
-              onClick={() => setProjectType('webserver')}
+              onClick={() => setProjectType('web-server')}
               className='projecttypebutton'
-              disabled={projectType == 'webserver'}
+              disabled={projectType == 'web-server'}
             >
               Web Server
             </button>
@@ -83,7 +111,29 @@ export default function NewProject_page () {
         />
 
         <div className='absolute left-1/2 transform -translate-x-1/2 bottom-0 mb-5'>
-          <button className='new-project-btn' onClick={async () => await invoke("create_project", { projectType, projectFolder, projectName })}>Create</button>
+          <p
+            className='text-center mb-2'
+            style={{
+              display: creationMessage == '' ? 'none' : 'block',
+              color:
+                creationMessage == '' ? 'white' : creationMessage.split(':')[0]
+            }}
+          >
+            {creationMessage == '' ? '' : creationMessage.split(':')[1]}
+          </p>
+          <button
+            className='new-project-btn'
+            onClick={async () =>
+              await invoke('create_project', {
+                projectType,
+                projectFolder,
+                projectName
+              })
+            }
+            disabled={!creationButtonEnabled}
+          >
+            Create
+          </button>
         </div>
       </div>
     </>

@@ -1,33 +1,103 @@
-use tauri::Manager;
+use serde_json::Value;
+use std::{io::Cursor, path::Path};
+use tauri::{AppHandle, Emitter};
+use tauri_plugin_dialog::{DialogExt, MessageDialogKind};
 use tokio::fs;
+use zip::ZipArchive;
 
 #[tauri::command]
-async fn create_project(project_type: String, project_folder: String, project_name: String) {
-    let project_root: String = format!("{}/{}", project_folder, project_name);
+async fn create_project(
+    app: AppHandle,
+    project_type: String,
+    project_folder: String,
+    project_name: String,
+) {
+    let _ = app.emit("new_project_enable_creation_button", "false");
+    let _ = app.emit("new_project_update_message", "white:Creating project...");
+
+    let folder = Path::new(&project_folder);
+    let name = Path::new(&project_name);
+    let project_root = folder.join(name);
     let _ = fs::create_dir(&project_root).await;
 
-    let project_type_str: &str = project_type.as_str();
-    match project_type_str {
-        "website" => {
-            let _ = fs::File::create(format!("{}/index.php", project_root)).await;
+    if project_type != "empty" {
+        let _ = app.emit("new_project_update_message", "white:Fetching templates...");
+        let url = format!(
+            "https://codefly-repo.lncvrt.xyz/php-fly/templates/mainfest.php?onlyLatest=true&template={}",
+            project_type
+        );
+        if let Ok(templates_res) = reqwest::get(url).await {
+            if let Ok(json) = templates_res.json::<Value>().await {
+                if let Some(templatedata) = json.get(&project_type) {
+                    if let Some(latestdata) = templatedata.get("latest") {
+                        if !latestdata.is_null() {
+                            if let Some(latestdownloadurl) =
+                                latestdata.get("download_url").and_then(|v| v.as_str())
+                            {
+                                let _ = app.emit(
+                                    "new_project_update_message",
+                                    "white:Downloading template...",
+                                );
+                                if let Ok(download_res) = reqwest::get(latestdownloadurl).await {
+                                    match download_res.bytes().await {
+                                        Ok(bytes) => {
+                                            let _ = app.emit(
+                                                "new_project_update_message",
+                                                "white:Unzipping template...",
+                                            );
+                                            let result = tokio::task::spawn_blocking(
+                                                move || -> anyhow::Result<()> {
+                                                    let reader = Cursor::new(bytes);
+                                                    let mut archive = ZipArchive::new(reader)?;
 
-            let _ = fs::write(
-                format!("{}/index.php", project_root),
-                "<h1>this will be updated later</h1>",
-            )
-            .await;
+                                                    for i in 0..archive.len() {
+                                                        let mut file = archive.by_index(i)?;
+                                                        let outpath =
+                                                            &project_root.join(file.name());
+
+                                                        if file.is_dir() {
+                                                            std::fs::create_dir_all(&outpath)?;
+                                                        } else {
+                                                            if let Some(parent) = outpath.parent() {
+                                                                std::fs::create_dir_all(parent)?;
+                                                            }
+                                                            let mut outfile =
+                                                                std::fs::File::create(&outpath)?;
+                                                            std::io::copy(&mut file, &mut outfile)?;
+                                                        }
+                                                    }
+
+                                                    Ok(())
+                                                },
+                                            )
+                                            .await;
+
+                                            match result {
+                                                Ok(inner) => {
+                                                    if let Err(e) = inner {
+                                                        eprintln!("unzip failed: {:?}", e);
+                                                    }
+                                                }
+                                                Err(e) => {
+                                                    eprintln!("task panicked: {:?}", e);
+                                                }
+                                            }
+                                        }
+                                        Err(_) => {}
+                                    }
+                                } else {
+                                    eprintln!("failed to download file");
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
-
-        "webserver" => {
-            let _ = fs::write(
-                format!("{}/index.php", project_root),
-                "<h1>this will be updated later</h1>",
-            )
-            .await;
-        }
-
-        _ => {}
     }
+
+    let _ = app.emit("new_project_enable_creation_button", "true");
+    let _ = app.emit("new_project_update_message", "");
 }
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
@@ -35,21 +105,22 @@ pub fn run() {
     tauri::Builder::default()
         .plugin(tauri_plugin_dialog::init())
         .plugin(tauri_plugin_single_instance::init(|app, _args, _cwd| {
-            let _ = app
-                .get_webview_window("main")
-                .expect("no main window")
-                .set_focus();
+            app.dialog()
+                .message("PHP Fly is already open!")
+                .kind(MessageDialogKind::Error)
+                .title("Warning")
+                .blocking_show();
         }))
         .invoke_handler(tauri::generate_handler![create_project])
         .setup(|app| {
             tauri::webview::WebviewWindowBuilder::new(
                 app,
-                "main",
+                "projectmanager",
                 tauri::WebviewUrl::App("projectmanager/projects".into()),
             )
             .resizable(false)
             .maximizable(false)
-            .title("PHP Fly")
+            .title("PHP Fly: Project Manager")
             .inner_size(800.0, 500.0)
             .build()?;
             Ok(())

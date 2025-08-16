@@ -3,8 +3,8 @@
   "identifier": "default",
   "description": "Capability for the main window",
   "windows": [
-    "main",
-    "new_project_popup"
+    "projectmanager",
+    "newprojectpopup"
   ],
   "permissions": [
     "core:default",

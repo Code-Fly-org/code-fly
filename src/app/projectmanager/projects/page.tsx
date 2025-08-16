@@ -10,15 +10,15 @@ export default function ProjectManager_Projects () {
         <button
           onClick={async () => {
             const windowExists = await WebviewWindow.getByLabel(
-              'new_project_popup'
+              'newprojectpopup'
             )
             if (windowExists) return
-            const mainWindow = await WebviewWindow.getByLabel('main')
+            const mainWindow = await WebviewWindow.getByLabel('projectmanager')
             if (!mainWindow) return
-            const popup = new WebviewWindow('new_project_popup', {
+            const popup = new WebviewWindow('newprojectpopup', {
               title: 'PHP Fly: New Project',
               url: '/newproject',
-              width: 600,
+              width: 400,
               height: 500,
               resizable: false,
               maximizable: false,
