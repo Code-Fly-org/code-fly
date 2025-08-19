@@ -2,6 +2,10 @@
 
 import './Editor_globals.css'
 
+import Image from "next/image";
+
+import file_list_icon from "./assets/file_list_icon.svg";
+
 export default function Editor_Layout ({
   children
 }: {
@@ -9,7 +13,11 @@ export default function Editor_Layout ({
 }) {
   return (
     <>
-      <div className='sidebar'></div>
+      <div className='sidebar'>
+        <button>
+          <Image src={file_list_icon} alt="File list icon" width={60} height={60} />
+        </button>
+      </div>
 
       <main>{children}</main>
     </>

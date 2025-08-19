@@ -1,6 +1,14 @@
 @import "tailwindcss";
 
 .sidebar {
-  @apply bg-[rgb(24,24,36)] ml-[10px] mt-3 p-5 border border-[rgb(48,48,72)] rounded-lg;
+  @apply bg-[rgb(24,24,36)] ml-[10px] mt-3 p-0 border border-[rgb(48,48,72)] rounded-lg;
   @apply w-20 h-[calc(100vh_-_23px)];
+  @apply relative;
+}
+
+.sidebar button {
+  @apply w-15 h-15 bg-[rgb(54,54,72)] hover:bg-[rgb(72,72,96)];
+  @apply border border-[rgb(72,72,96)] hover:border-[rgb(96,96,128)] p-0 mt-2 rounded-lg;
+  @apply transition-colors cursor-pointer;
+  @apply absolute left-1/2 -translate-x-1/2;
 }
