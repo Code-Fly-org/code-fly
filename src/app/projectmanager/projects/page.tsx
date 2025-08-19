@@ -18,7 +18,7 @@ export default function ProjectManager_Projects () {
               'projectmanager'
             )
             if (!projectManager) return
-            invoke('create_window', { windowType: 1 })
+            invoke('create_window', { windowType: 1, editorFolder: null })
             const popup = await WebviewWindow.getByLabel('newprojectpopup')
             if (!popup) return
             await projectManager.setClosable(false)
@@ -41,7 +41,7 @@ export default function ProjectManager_Projects () {
               'projectmanager'
             )
             if (!projectManager) return
-            invoke('create_window', { windowType: 2 })
+            invoke('create_window', { windowType: 2, editorFolder: "~/Desktop/php-fly-debug-folder" })
             const editor = await WebviewWindow.getByLabel('editor')
             if (!editor) return
             projectManager.close()

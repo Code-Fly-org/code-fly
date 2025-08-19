@@ -6,7 +6,7 @@ use tokio::fs;
 use zip::ZipArchive;
 
 #[tauri::command]
-fn create_window(app: AppHandle, window_type: i32) {
+fn create_window(app: AppHandle, window_type: i32, editor_folder: Option<String>) {
     match window_type {
         0 => {
             let _ = WebviewWindowBuilder::new(
@@ -34,7 +34,7 @@ fn create_window(app: AppHandle, window_type: i32) {
         }
         2 => {
             let _ =
-                WebviewWindowBuilder::new(&app, "editor", tauri::WebviewUrl::App("editor".into()))
+                WebviewWindowBuilder::new(&app, "editor", tauri::WebviewUrl::App(format!("editor?folder={}", editor_folder.unwrap()).into()))
                     .maximized(true)
                     .title("PHP Fly: Editor")
                     .inner_size(800.0, 600.0)
@@ -154,7 +154,7 @@ pub fn run() {
         .invoke_handler(tauri::generate_handler![create_project, create_window])
         .setup(|app| {
             let handle = app.handle();
-            create_window(handle.clone(), 0);
+            create_window(handle.clone(), 0, None);
             Ok(())
         })
         .run(tauri::generate_context!())
