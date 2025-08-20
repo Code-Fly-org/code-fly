@@ -18,9 +18,13 @@ export default function Editor_Layout ({
   return (
     <>
       <div className='sidebar'>
-        <button>
-          <Image src={file_list_icon} alt="File list icon" width={60} height={60} />
-        </button>
+        <div className='sidebar-tabs'>
+          <button>
+            <Image src={file_list_icon} alt="File list icon" width={60} height={60} />
+          </button>
+        </div>
+
+        <div className="separator"></div>
       </div>
 
       <main>{children}</main>
