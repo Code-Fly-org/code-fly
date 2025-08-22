@@ -3,6 +3,7 @@
 import { WebviewWindow } from '@tauri-apps/api/webviewWindow'
 import './ProjecftManager_projects.css'
 import { invoke } from '@tauri-apps/api/core'
+import { desktopDir } from '@tauri-apps/api/path'
 
 export default function ProjectManager_Projects () {
   return (
@@ -41,7 +42,7 @@ export default function ProjectManager_Projects () {
               'projectmanager'
             )
             if (!projectManager) return
-            invoke('create_window', { windowType: 2, editorFolder: "~/Desktop/php-fly-debug-folder" })
+            invoke('create_window', { windowType: 2, editorFolder: await desktopDir() + "/php-fly-debug-folder" })
             const editor = await WebviewWindow.getByLabel('editor')
             if (!editor) return
             projectManager.close()

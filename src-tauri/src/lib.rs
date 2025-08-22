@@ -140,6 +140,20 @@ async fn create_project(
     let _ = app.emit("new_project_update_message", "");
 }
 
+#[tauri::command]
+fn read_dir(path: String) -> Vec<String> {
+    let mut files = Vec::new();
+    if let Ok(entries) = std::fs::read_dir(path) {
+        for entry in entries.flatten() {
+            if let Ok(file_name) = entry.file_name().into_string() {
+                files.push(file_name.clone());
+                println!("{}", file_name);
+            }
+        }
+    }
+    files
+}
+
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     tauri::Builder::default()
@@ -151,7 +165,7 @@ pub fn run() {
                 .title("Warning")
                 .blocking_show();
         }))
-        .invoke_handler(tauri::generate_handler![create_project, create_window])
+        .invoke_handler(tauri::generate_handler![create_project, create_window, read_dir])
         .setup(|app| {
             let handle = app.handle();
             create_window(handle.clone(), 0, None);

@@ -16,6 +16,6 @@
 }
 
 .separator {
-  @apply ml-2;
+  @apply ml-2 mr-2;
   @apply h-full border-l border-[rgb(48,48,72)];
 }

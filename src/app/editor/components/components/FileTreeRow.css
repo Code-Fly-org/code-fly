@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+.file-tree-row {
+  @apply flex flex-row;
+}
+
+.file-tree-row h1 {
+  @apply text-3xl mt-2;
+}
