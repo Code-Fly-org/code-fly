@@ -42,7 +42,7 @@ export default function ProjectManager_Projects () {
               'projectmanager'
             )
             if (!projectManager) return
-            invoke('create_window', { windowType: 2, editorFolder: await desktopDir() + "/php-fly-debug-folder" })
+            invoke('create_window', { windowType: 2, editorFolder: await desktopDir() + "/code-fly-debug-folder" })
             const editor = await WebviewWindow.getByLabel('editor')
             if (!editor) return
             projectManager.close()
