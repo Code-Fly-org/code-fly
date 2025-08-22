@@ -4,11 +4,11 @@ import './Editor_globals.css'
 
 import FileList from './components/FileList'
 
-import Image from 'next/image'
 import { useSearchParams } from 'next/navigation'
 import { Suspense, useState } from 'react'
 
-import file_list_icon from './assets/file_list_icon.svg'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faFile } from '@fortawesome/free-regular-svg-icons'
 
 function Editor_Layout_Sidebar () {
   const [projectFolder, setProjectFolder] = useState<string>(
@@ -20,12 +20,7 @@ function Editor_Layout_Sidebar () {
     <div className='sidebar'>
       <div className='sidebar-tabs'>
         <button onClick={() => setSideBarPage('file-list')}>
-          <Image
-            src={file_list_icon}
-            alt='File list icon'
-            width={60}
-            height={60}
-          />
+          <FontAwesomeIcon icon={faFile} className='w-8 h-8' />
         </button>
       </div>
 
