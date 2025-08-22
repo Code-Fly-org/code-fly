@@ -20,7 +20,7 @@ function Editor_Layout_Sidebar () {
     <div className='sidebar'>
       <div className='sidebar-tabs'>
         <button onClick={() => setSideBarPage('file-list')}>
-          <FontAwesomeIcon icon={faFile} className='w-8 h-8' />
+          <FontAwesomeIcon icon={faFile} />
         </button>
       </div>
 

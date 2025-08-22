@@ -19,3 +19,8 @@
   @apply ml-2 mr-2;
   @apply h-full border-l border-[rgb(48,48,72)];
 }
+
+.sidebar-tabs svg {
+  @apply w-8 h-8;
+  @apply text-[rgb(160,160,192)];
+}
