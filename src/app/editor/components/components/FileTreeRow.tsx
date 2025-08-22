@@ -1,5 +1,3 @@
-'use client'
-
 import './FileTreeRow.css'
 
 import Image from "next/image";
