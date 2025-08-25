@@ -40,7 +40,7 @@ export default function Sidebar () {
       <Link href='/projectmanager/settings'>Settings</Link>
       {version != null && (
         <p className='mt-auto mr-auto ml-2 mb-2 text-gray-400'>
-          PHP Fly v{version}
+          Code Fly v{version}
         </p>
       )}
     </div>

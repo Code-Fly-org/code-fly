@@ -1,11 +1,11 @@
 [package]
-name = "php-fly"
+name = "code-fly"
 version = "1.0.0"
 authors = ["Lncvrt", "Puppet57"]
 edition = "2024"
 
 [lib]
-name = "php_fly_lib"
+name = "code_fly_lib"
 crate-type = ["staticlib", "cdylib", "rlib"]
 
 [build-dependencies]

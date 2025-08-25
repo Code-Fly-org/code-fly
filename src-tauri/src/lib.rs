@@ -16,7 +16,7 @@ fn create_window(app: AppHandle, window_type: i32, editor_folder: Option<String>
             )
             .resizable(false)
             .maximizable(false)
-            .title("PHP Fly: Project Manager")
+            .title("Code Fly: Project Manager")
             .inner_size(800.0, 500.0)
             .build();
         }
@@ -28,7 +28,7 @@ fn create_window(app: AppHandle, window_type: i32, editor_folder: Option<String>
             )
             .resizable(false)
             .maximizable(false)
-            .title("PHP Fly: New Project")
+            .title("Code Fly: New Project")
             .inner_size(400.0, 500.0)
             .build();
         }
@@ -36,7 +36,7 @@ fn create_window(app: AppHandle, window_type: i32, editor_folder: Option<String>
             let _ =
                 WebviewWindowBuilder::new(&app, "editor", tauri::WebviewUrl::App(format!("editor?folder={}", editor_folder.unwrap()).into()))
                     .maximized(true)
-                    .title("PHP Fly: Editor")
+                    .title("Code Fly: Editor")
                     .inner_size(800.0, 600.0)
                     .min_inner_size(600.0, 400.0)
                     .build();
@@ -63,7 +63,7 @@ async fn create_project(
     if project_type != "empty" {
         let _ = app.emit("new_project_update_message", "white:Fetching templates...");
         let url = format!(
-            "https://codefly-repo.lncvrt.xyz/php-fly/templates/mainfest.php?onlyLatest=true&template={}",
+            "https://codefly-repo.lncvrt.xyz/templates/mainfest.php?onlyLatest=true&template={}",
             project_type
         );
         if let Ok(templates_res) = reqwest::get(url).await {
@@ -160,7 +160,7 @@ pub fn run() {
         .plugin(tauri_plugin_dialog::init())
         .plugin(tauri_plugin_single_instance::init(|app, _args, _cwd| {
             app.dialog()
-                .message("PHP Fly is already open!")
+                .message("Code Fly is already open!")
                 .kind(MessageDialogKind::Error)
                 .title("Warning")
                 .blocking_show();

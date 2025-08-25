@@ -1,8 +1,8 @@
 {
   "$schema": "https://schema.tauri.app/config/2",
-  "productName": "PHP Fly",
+  "productName": "Code Fly",
   "version": "1.0.0",
-  "identifier": "xyz.lncvrt.php-fly",
+  "identifier": "xyz.lncvrt.code-fly",
   "build": {
     "beforeDevCommand": "yarn dev",
     "beforeBuildCommand": "yarn build",
