@@ -38,6 +38,7 @@ export default function Sidebar () {
       ></Image>
       <Link href='/projectmanager/projects'>Projects</Link>
       <Link href='/projectmanager/settings'>Settings</Link>
+      <Link href='/projectmanager/packages'>Language Packages</Link>
       {version != null && (
         <p className='mt-auto mr-auto ml-2 mb-2 text-gray-400'>
           Code Fly v{version}
