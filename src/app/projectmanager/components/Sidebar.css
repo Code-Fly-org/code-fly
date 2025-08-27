@@ -1,7 +1,8 @@
 @import "tailwindcss";
 
 .sidebar {
-  @apply w-50 h-screen bg-[rgb(24,24,36)] flex flex-col items-center justify-start border-r border-r-[rgb(48,48,72)] z-1 rounded-r-[12px];
+  @apply w-50 h-[calc(100vh_-_15px)] m-2 bg-[rgb(24,24,36)] flex flex-col items-center justify-start;
+  @apply border border-[rgb(48,48,72)] z-1 rounded-lg;
 }
 
 .sidebar a {

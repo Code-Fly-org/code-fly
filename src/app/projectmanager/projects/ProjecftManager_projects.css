@@ -9,7 +9,7 @@
 }
 
 .content {
-  @apply w-[584px] h-[408px] bg-[rgb(24,24,36)] border border-[rgb(48,48,72)] rounded-lg items-start flex flex-col m-2 p-1 overflow-auto;
+  @apply w-[578px] h-[408px] bg-[rgb(24,24,36)] border border-[rgb(48,48,72)] rounded-lg items-start flex flex-col ml-0 p-1 overflow-auto;
 }
 
 .content .entry {

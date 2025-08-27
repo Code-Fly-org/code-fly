@@ -1,9 +1,9 @@
 @import "tailwindcss";
 
 .package-list {
-  @apply bg-[rgb(24,24,36)] m-2 p-2 border border-[rgb(48,48,72)];
-  @apply rounded-lg justify-center mx-auto w-fit flex gap-2;
-  @apply w-145 h-121;
+  @apply bg-[rgb(24,24,36)] mt-2 p-2 border border-[rgb(48,48,72)];
+  @apply rounded-lg gap-2;
+  @apply w-144.5 h-121;
 }
 
 .package-list button {
