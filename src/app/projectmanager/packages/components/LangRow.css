@@ -13,3 +13,7 @@
 .lang-title {
   @apply text-5xl;
 }
+
+.buttons-container {
+  @apply float-right;
+}

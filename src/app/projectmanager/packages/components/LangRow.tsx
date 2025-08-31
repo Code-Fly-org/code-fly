@@ -7,6 +7,9 @@ export default function LangRow ({ lang }: { lang: string }) {
     <>
       <div className='lang-row'>
         <h1 className='lang-title'>{lang}</h1>
+        <div className='buttons-container'>
+          <button>Install</button>
+        </div>
       </div>
     </>
   )
