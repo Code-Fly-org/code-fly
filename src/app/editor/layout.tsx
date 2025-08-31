@@ -42,9 +42,17 @@ export default function Editor_Layout ({
 }) {
   return (
     <>
-      <Suspense>
-        <Editor_Layout_Sidebar />
-      </Suspense>
+      <div className="flex">
+        <Suspense>
+          <Editor_Layout_Sidebar />
+        </Suspense>
+
+        <div>
+          <div className='top-buttons-div'>Buttons</div>
+
+          <div className='code-editor-div'>Editor</div>
+        </div>
+      </div>
       <main>{children}</main>
     </>
   )

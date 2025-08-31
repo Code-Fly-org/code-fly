@@ -24,3 +24,13 @@
   @apply w-8 h-8;
   @apply text-[rgb(160,160,192)];
 }
+
+.code-editor-div {
+  @apply bg-[rgb(24,24,36)] ml-[10px] mt-3 p-0 border border-[rgb(48,48,72)] rounded-lg;
+  @apply w-[calc(100vw_-_430px)] h-[calc(100vh_-_95px)] flex flex-row;
+}
+
+.top-buttons-div {
+  @apply bg-[rgb(24,24,36)] ml-[10px] mt-3 p-0 border border-[rgb(48,48,72)] rounded-lg;
+  @apply w-[calc(100vw_-_430px)] h-15 flex flex-row;
+}
