@@ -19,7 +19,7 @@ export default function FileTreeRow({ name }: { name: string }) {
 
   return (
     <div className="file-tree-row">
-      {file_icon != null && <Image src={file_icon} alt="File Icon" width={50} height={50} />}
+      {file_icon != null && <Image src={file_icon} alt="File Icon" width={50} height={50} className='file-icon' />}
       <h1>{name}</h1>
     </div>
   )

@@ -7,3 +7,7 @@
 .file-tree-row h1 {
   @apply text-3xl mt-2;
 }
+
+.file-icon {
+  @apply mt-1;
+}
