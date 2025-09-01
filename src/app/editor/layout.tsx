@@ -51,6 +51,8 @@ export default function Editor_Layout ({
           <div className='top-buttons-div'>Buttons</div>
 
           <div className='code-editor-div'>Editor</div>
+
+          <div className='bottom-bar-div'>Terminal</div>
         </div>
       </div>
       <main>{children}</main>

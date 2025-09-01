@@ -27,10 +27,15 @@
 
 .code-editor-div {
   @apply bg-[rgb(24,24,36)] ml-[10px] mt-3 p-0 border border-[rgb(48,48,72)] rounded-lg;
-  @apply w-[calc(100vw_-_430px)] h-[calc(100vh_-_95px)] flex flex-row;
+  @apply w-[calc(100vw_-_430px)] h-[calc(100vh_-_400px)] flex flex-row;
 }
 
 .top-buttons-div {
   @apply bg-[rgb(24,24,36)] ml-[10px] mt-3 p-0 border border-[rgb(48,48,72)] rounded-lg;
   @apply w-[calc(100vw_-_430px)] h-15 flex flex-row;
+}
+
+.bottom-bar-div {
+  @apply bg-[rgb(24,24,36)] ml-[10px] mt-3 p-0 border border-[rgb(48,48,72)] rounded-lg;
+  @apply w-[calc(100vw_-_430px)] h-[calc(100vh_-_712px)] flex flex-row;
 }
