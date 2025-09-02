@@ -9,6 +9,7 @@ import { Suspense, useState } from 'react'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFile } from '@fortawesome/free-regular-svg-icons'
+import Editor from './components/components/Editor'
 
 function Editor_Layout_Sidebar () {
   const [projectFolder, setProjectFolder] = useState<string>(
@@ -42,7 +43,7 @@ export default function Editor_Layout ({
 }) {
   return (
     <>
-      <div className="flex">
+      <div className='flex'>
         <Suspense>
           <Editor_Layout_Sidebar />
         </Suspense>
@@ -50,7 +51,9 @@ export default function Editor_Layout ({
         <div>
           <div className='top-buttons-div'>Buttons</div>
 
-          <div className='code-editor-div'>Editor</div>
+          <div className='code-editor-div'>
+            <Editor />
+          </div>
 
           <div className='bottom-bar-div'>Terminal</div>
         </div>

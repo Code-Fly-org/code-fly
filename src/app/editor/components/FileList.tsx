@@ -3,7 +3,7 @@ import { invoke } from '@tauri-apps/api/core'
 import './FileList.css'
 import FileTreeRow from './components/FileTreeRow'
 
-export default function FileList({ projectFolder }: { projectFolder: string }) {
+export default function FileList ({ projectFolder }: { projectFolder: string }) {
   const [files, setFiles] = useState<string[]>([])
 
   useEffect(() => {
@@ -15,7 +15,7 @@ export default function FileList({ projectFolder }: { projectFolder: string }) {
   }, [projectFolder])
 
   return (
-    <div className="filelist">
+    <div className='filelist'>
       {files.map((file, i) => (
         <FileTreeRow key={i} name={file} />
       ))}
