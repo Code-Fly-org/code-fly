@@ -9,7 +9,7 @@ import { Suspense, useState } from 'react'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFile } from '@fortawesome/free-regular-svg-icons'
-import Editor from './components/components/Editor'
+import dynamic from 'next/dynamic'
 
 function Editor_Layout_Sidebar () {
   const [projectFolder, setProjectFolder] = useState<string>(
@@ -41,6 +41,8 @@ export default function Editor_Layout ({
 }: {
   children: React.ReactNode
 }) {
+  const Editor = dynamic(() => import('./components/components/Editor'), { ssr: false })
+
   return (
     <>
       <div className='flex'>
