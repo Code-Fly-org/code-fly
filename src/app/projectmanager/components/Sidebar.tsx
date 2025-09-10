@@ -5,6 +5,7 @@ import './Sidebar.css'
 import { useEffect, useState } from 'react'
 import { app } from '@tauri-apps/api'
 import Link from 'next/link'
+import Icon from '../../assets/Icon.png'
 
 export default function Sidebar () {
   const [version, setVersion] = useState<string | null>(null)
@@ -20,7 +21,7 @@ export default function Sidebar () {
   return (
     <div className='sidebar'>
       <Image
-        src='/Icon.png'
+        src={Icon}
         width={64}
         height={64}
         alt='CodeFly Logo'
